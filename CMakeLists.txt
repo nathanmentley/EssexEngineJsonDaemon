@@ -2,11 +2,11 @@
 
 
 file(GLOB EssexEngineJsonDaemon_HEADERS
-    "src/Daemons/Json/*.h"
+    "src/Daemons/JsonDaemon/*.h"
 )
 file(GLOB EssexEngineJsonDaemon_SRC
     ${EssexEngineJsonDaemon_HEADERS}
-    "src/Daemons/Json/*.cpp"
+    "src/Daemons/JsonDaemon/*.cpp"
 )
 
 #setup headers
