@@ -12,8 +12,9 @@
 
 #include <string>
 #include <list>
+#include <EssexEngineCore/WeakPointer.h>
 
-#include <EssexEngineCore/UniquePointer.h>
+#include <EssexEngineCore/WeakPointer.h>
 #include <EssexEngineCore/IDriver.h>
 
 #include <EssexEngineFileSystemDaemon/IFileBuffer.h>
@@ -27,46 +28,46 @@ namespace Json{
     class IJsonDriver: public Core::IDriver
     {
         public:
-            virtual UniquePointer<IJsonDocument> GetJsonDocument(SmartPointer<Daemons::FileSystem::IFileBuffer> data) = 0;
-            virtual UniquePointer<IJsonNode> GetJsonNode(SmartPointer<IJsonDocument> doc, std::string key) = 0;
-            virtual UniquePointer<IJsonNode> GetJsonNode(SmartPointer<IJsonNode> node, std::string key) = 0;
+            virtual std::unique_ptr<IJsonDocument> GetJsonDocument(std::string data) = 0;
+            virtual std::unique_ptr<IJsonNode> GetJsonNode(WeakPointer<IJsonDocument> doc, std::string key) = 0;
+            virtual std::unique_ptr<IJsonNode> GetJsonNode(WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual std::list<UniquePointer<IJsonNode>> GetJsonNodeArray(SmartPointer<IJsonDocument> doc, std::string key) = 0;
-            virtual std::list<UniquePointer<IJsonNode>> GetJsonNodeArray(SmartPointer<IJsonNode> node, std::string key) = 0;
+            virtual std::list<std::unique_ptr<IJsonNode>> GetJsonNodeArray(WeakPointer<IJsonDocument> doc, std::string key) = 0;
+            virtual std::list<std::unique_ptr<IJsonNode>> GetJsonNodeArray(WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual Nullable<std::string> GetStringFromNode(SmartPointer<IJsonDocument> document, std::string key) = 0;
-            virtual Nullable<int> GetIntFromNode(SmartPointer<IJsonDocument> document, std::string key) = 0;
-            virtual Nullable<bool> GetBoolFromNode(SmartPointer<IJsonDocument> document, std::string key) = 0;
+            virtual Nullable<std::string> GetStringFromNode(WeakPointer<IJsonDocument> document, std::string key) = 0;
+            virtual Nullable<int> GetIntFromNode(WeakPointer<IJsonDocument> document, std::string key) = 0;
+            virtual Nullable<bool> GetBoolFromNode(WeakPointer<IJsonDocument> document, std::string key) = 0;
         
-            virtual Nullable<std::string> GetStringFromNode(SmartPointer<IJsonNode> node, std::string key) = 0;
-            virtual Nullable<int> GetIntFromNode(SmartPointer<IJsonNode> node, std::string key) = 0;
-            virtual Nullable<bool> GetBoolFromNode(SmartPointer<IJsonNode> node, std::string key) = 0;
+            virtual Nullable<std::string> GetStringFromNode(WeakPointer<IJsonNode> node, std::string key) = 0;
+            virtual Nullable<int> GetIntFromNode(WeakPointer<IJsonNode> node, std::string key) = 0;
+            virtual Nullable<bool> GetBoolFromNode(WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual Nullable<std::string> GetStringFromNode(SmartPointer<IJsonNode> node) = 0;
-            virtual Nullable<int> GetIntFromNode(SmartPointer<IJsonNode> node) = 0;
-            virtual Nullable<bool> GetBoolFromNode(SmartPointer<IJsonNode> node) = 0;
+            virtual Nullable<std::string> GetStringFromNode(WeakPointer<IJsonNode> node) = 0;
+            virtual Nullable<int> GetIntFromNode(WeakPointer<IJsonNode> node) = 0;
+            virtual Nullable<bool> GetBoolFromNode(WeakPointer<IJsonNode> node) = 0;
         
-            virtual UniquePointer<IJsonNode> CreateNode() = 0;
+            virtual std::unique_ptr<IJsonNode> CreateNode() = 0;
         
-            virtual void RemoveNode(SmartPointer<IJsonDocument> doc, std::string key) = 0;
-            virtual void RemoveNode(SmartPointer<IJsonNode> node, std::string key) = 0;
+            virtual void RemoveNode(WeakPointer<IJsonDocument> doc, std::string key) = 0;
+            virtual void RemoveNode(WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual void AppendNode(SmartPointer<IJsonDocument> target, SmartPointer<IJsonNode> node, std::string key) = 0;
-            virtual void AppendNode(SmartPointer<IJsonNode> target, SmartPointer<IJsonNode> node, std::string key) = 0;
+            virtual void AppendNode(WeakPointer<IJsonDocument> target, WeakPointer<IJsonNode> node, std::string key) = 0;
+            virtual void AppendNode(WeakPointer<IJsonNode> target, WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual void AppendToArray(SmartPointer<IJsonDocument> target, SmartPointer<IJsonNode> node, std::string key) = 0;
-            virtual void AppendToArray(SmartPointer<IJsonNode> target, SmartPointer<IJsonNode> node, std::string key) = 0;
+            virtual void AppendToArray(WeakPointer<IJsonDocument> target, WeakPointer<IJsonNode> node, std::string key) = 0;
+            virtual void AppendToArray(WeakPointer<IJsonNode> target, WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual void SetNodeToString(SmartPointer<IJsonDocument> document, Nullable<std::string> value) = 0;
-            virtual void SetNodeToInt(SmartPointer<IJsonDocument> document, Nullable<int> value) = 0;
-            virtual void SetNodeToBool(SmartPointer<IJsonDocument> document, Nullable<bool> value) = 0;
+            virtual void SetNodeToString(WeakPointer<IJsonDocument> document, Nullable<std::string> value) = 0;
+            virtual void SetNodeToInt(WeakPointer<IJsonDocument> document, Nullable<int> value) = 0;
+            virtual void SetNodeToBool(WeakPointer<IJsonDocument> document, Nullable<bool> value) = 0;
         
-            virtual void SetNodeToString(SmartPointer<IJsonNode> node, Nullable<std::string> value) = 0;
-            virtual void SetNodeToInt(SmartPointer<IJsonNode> node, Nullable<int> value) = 0;
-            virtual void SetNodeToBool(SmartPointer<IJsonNode> node, Nullable<bool> value) = 0;
-            virtual void SetNodeToArray(SmartPointer<IJsonNode> node) = 0;
+            virtual void SetNodeToString(WeakPointer<IJsonNode> node, Nullable<std::string> value) = 0;
+            virtual void SetNodeToInt(WeakPointer<IJsonNode> node, Nullable<int> value) = 0;
+            virtual void SetNodeToBool(WeakPointer<IJsonNode> node, Nullable<bool> value) = 0;
+            virtual void SetNodeToArray(WeakPointer<IJsonNode> node) = 0;
         
-            virtual std::string SerializeDocument(SmartPointer<IJsonDocument> doc) = 0;
+            virtual std::string SerializeDocument(WeakPointer<IJsonDocument> doc) = 0;
         private:
     };
 }}};
