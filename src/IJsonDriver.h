@@ -12,7 +12,6 @@
 
 #include <string>
 #include <list>
-#include <EssexEngineCore/WeakPointer.h>
 
 #include <EssexEngineCore/WeakPointer.h>
 #include <EssexEngineCore/IDriver.h>
@@ -28,12 +27,12 @@ namespace Json{
     class IJsonDriver: public Core::IDriver
     {
         public:
-            virtual std::unique_ptr<IJsonDocument> GetJsonDocument(std::string data) = 0;
-            virtual std::unique_ptr<IJsonNode> GetJsonNode(WeakPointer<IJsonDocument> doc, std::string key) = 0;
-            virtual std::unique_ptr<IJsonNode> GetJsonNode(WeakPointer<IJsonNode> node, std::string key) = 0;
+            virtual WeakPointer<IJsonDocument> GetJsonDocument(std::string data) = 0;
+            virtual WeakPointer<IJsonNode> GetJsonNode(WeakPointer<IJsonDocument> doc, std::string key) = 0;
+            virtual WeakPointer<IJsonNode> GetJsonNode(WeakPointer<IJsonNode> node, std::string key) = 0;
         
-            virtual std::list<std::unique_ptr<IJsonNode>> GetJsonNodeArray(WeakPointer<IJsonDocument> doc, std::string key) = 0;
-            virtual std::list<std::unique_ptr<IJsonNode>> GetJsonNodeArray(WeakPointer<IJsonNode> node, std::string key) = 0;
+            virtual std::list<WeakPointer<IJsonNode>> GetJsonNodeArray(WeakPointer<IJsonDocument> doc, std::string key) = 0;
+            virtual std::list<WeakPointer<IJsonNode>> GetJsonNodeArray(WeakPointer<IJsonNode> node, std::string key) = 0;
         
             virtual Nullable<std::string> GetStringFromNode(WeakPointer<IJsonDocument> document, std::string key) = 0;
             virtual Nullable<int> GetIntFromNode(WeakPointer<IJsonDocument> document, std::string key) = 0;
@@ -47,7 +46,7 @@ namespace Json{
             virtual Nullable<int> GetIntFromNode(WeakPointer<IJsonNode> node) = 0;
             virtual Nullable<bool> GetBoolFromNode(WeakPointer<IJsonNode> node) = 0;
         
-            virtual std::unique_ptr<IJsonNode> CreateNode() = 0;
+            virtual WeakPointer<IJsonNode> CreateNode() = 0;
         
             virtual void RemoveNode(WeakPointer<IJsonDocument> doc, std::string key) = 0;
             virtual void RemoveNode(WeakPointer<IJsonNode> node, std::string key) = 0;
