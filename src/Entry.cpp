@@ -11,10 +11,15 @@
 
 #include <EssexEngineJsonDaemon/JsonDaemon.h>
 
+using EssexEngine::Context;
+using EssexEngine::WeakPointer;
+
+using EssexEngine::Daemons::Json::JsonDaemon;
+
 extern "C" {
-    void daemon_init(EssexEngine::Context* context) {
-        context->RegisterDaemon<EssexEngine::Daemons::Json::JsonDaemon>(
-            new EssexEngine::Daemons::Json::JsonDaemon(context)
+    void daemon_init(WeakPointer<Context> context) {
+        context->RegisterDaemon<JsonDaemon>(
+            new JsonDaemon(context)
         );
     }
 }
