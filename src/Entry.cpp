@@ -17,9 +17,13 @@ using EssexEngine::WeakPointer;
 using EssexEngine::Daemons::Json::JsonDaemon;
 
 extern "C" {
-    void daemon_init(WeakPointer<Context> context) {
+    void* daemon_init(WeakPointer<Context> context) {
+        JsonDaemon* daemon = new JsonDaemon(context);
+
         context->RegisterDaemon<JsonDaemon>(
-            new JsonDaemon(context)
+            daemon
         );
+
+        return daemon;
     }
 }
